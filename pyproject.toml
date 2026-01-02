@@ -1,0 +1,111 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pj-break-reproduction"
+version = "0.1.0"
+description = "Reproduction of PJ-Break: Prosody-driven Jailbreaks in Audio LLMs"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+authors = [
+    {name = "PJ-Break Reproduction Team"}
+]
+keywords = [
+    "audio-llm",
+    "jailbreak",
+    "prosody",
+    "safety",
+    "machine-learning"
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "numpy>=1.24.0",
+    "scipy>=1.10.0",
+    "pandas>=2.0.0",
+    "librosa>=0.10.0",
+    "soundfile>=0.12.0",
+    "pyloudnorm>=0.1.0",
+    "praat-parselmouth>=0.4.3",
+    "torch>=2.0.0",
+    "transformers>=4.35.0",
+    "accelerate>=0.24.0",
+    "openai>=1.0.0",
+    "anthropic>=0.7.0",
+    "google-generativeai>=0.3.0",
+    "azure-cognitiveservices-speech>=1.32.0",
+    "matplotlib>=3.7.0",
+    "seaborn>=0.12.0",
+    "tqdm>=4.66.0",
+    "pyyaml>=6.0.0",
+    "python-dotenv>=1.0.0",
+    "loguru>=0.7.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+    "hypothesis>=6.88.0",
+    "black>=23.0.0",
+    "isort>=5.12.0",
+    "mypy>=1.5.0",
+]
+gpu = [
+    "flash-attn>=2.3.0",
+    "bitsandbytes>=0.41.0",
+]
+
+[project.scripts]
+pjbreak = "src.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*", "experiments*"]
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q --hypothesis-seed=42"
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+
+[tool.hypothesis]
+max_examples = 100
+deadline = 10000
+
+[tool.black]
+line-length = 100
+target-version = ["py310", "py311"]
+include = '\.pyi?$'
+exclude = '''
+/(
+    \.git
+    | \.mypy_cache
+    | \.pytest_cache
+    | \.venv
+    | build
+    | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+line_length = 100
+skip_gitignore = true
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true
+ignore_missing_imports = true

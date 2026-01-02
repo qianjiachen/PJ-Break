@@ -1,0 +1,43 @@
+# PJ-Break Experiment Reproduction Dependencies
+# =============================================
+
+# Core scientific computing
+numpy>=1.24.0
+scipy>=1.10.0
+pandas>=2.0.0
+
+# Audio processing
+librosa>=0.10.0
+soundfile>=0.12.0
+pyloudnorm>=0.1.0
+praat-parselmouth>=0.4.3
+
+# Machine learning and deep learning
+torch>=2.0.0
+transformers>=4.35.0
+accelerate>=0.24.0
+
+# API clients
+openai>=1.0.0
+anthropic>=0.7.0
+google-generativeai>=0.3.0
+azure-cognitiveservices-speech>=1.32.0
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+hypothesis>=6.88.0
+
+# Utilities
+tqdm>=4.66.0
+pyyaml>=6.0.0
+python-dotenv>=1.0.0
+loguru>=0.7.0
+
+# Optional: For Qwen2-Audio local inference
+# flash-attn>=2.3.0  # Requires CUDA
+# bitsandbytes>=0.41.0  # For quantization
